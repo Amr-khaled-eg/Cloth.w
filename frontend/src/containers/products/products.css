@@ -1,0 +1,11 @@
+.products{
+    padding-top:5rem ;
+    display: flex;
+    justify-content:space-evenly;
+    flex-wrap: wrap;
+}
+.products-heading{
+    margin-bottom: 2rem;
+    width: 100%;
+    text-align: center;
+}

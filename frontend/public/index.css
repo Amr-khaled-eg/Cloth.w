@@ -1,0 +1,74 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: steelfish;
+  src: url("./steelfish.regular.ttf");
+}
+
+body {
+  background-color: #f9ebde;
+  background-image: linear-gradient(
+    to right,
+    #ffe4cb,
+    #f1d5bc,
+    #e2c7ae,
+    #d4b9a0,
+    #c6ab92
+  );
+  font-family: steelfish, sans-serif;
+  position: relative;
+}
+
+.app {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+@font-face {
+  font-family: elsie;
+  src: url("./elsie.regular.ttf");
+}
+button {
+  font-family: elsie, serif;
+  background-color: black;
+  color: white;
+  padding: 1rem 4rem;
+  font-size: 1.5rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  margin-top: 4rem;
+}
+h1 {
+  font-size: 5rem;
+  font-family: elsie, serif;
+  font-weight: 500;
+}
+h2 {
+  font-size: 5rem;
+  font-family: steelfish, sans-serif;
+  font-weight: 500;
+}
+h3 {
+  font-size: 3rem;
+  font-weight: 500;
+  font-family: steelfish;
+}
+a {
+  text-decoration: none;
+  font-size: 1.6rem;
+  color: black;
+}
+p {
+  font-size: 1.2rem;
+}
+@media screen and (max-width: 1600px) {
+  .app {
+    padding: 0 100px;
+  }
+  h1 {
+    font-size: 3.5rem;
+  }
+}

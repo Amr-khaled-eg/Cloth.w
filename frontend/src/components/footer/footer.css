@@ -1,0 +1,12 @@
+.footer {
+  height: 9rem;
+  background-color: black;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.footer-link {
+  color: #f9ebde;
+  font-family: elsie, serif;
+  font-size: 1rem;
+}

@@ -1,0 +1,35 @@
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 5rem;
+  margin-bottom: 2rem;
+}
+.flex-reverse {
+  flex-direction: row-reverse;
+}
+.flex-colmun {
+  flex-direction: column;
+}
+.photo {
+  width: 500px;
+  transform: rotateY(180deg);
+}
+.wide-photo {
+  width: 100%;
+  height: 700px;
+  object-fit: cover;
+  object-position: top bottom;
+}
+.feature-header {
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 1600px) {
+  .photo {
+    width: 400px;
+  }
+  .wide-photo {
+    height: 600px;
+  }
+}
