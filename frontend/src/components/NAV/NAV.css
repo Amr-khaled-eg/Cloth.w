@@ -1,13 +1,15 @@
 .navbar {
   display: flex;
-  padding-top: 1rem;
+  padding: 1rem 4rem;
   flex-wrap: wrap;
   position: relative;
+  z-index: 5;
 }
 .logo {
   font-size: 3rem;
   font-weight: 500;
   font-family: steelfish, sans-serif;
+  color: black;
 }
 .logo-link {
   flex: 1.5;
@@ -19,7 +21,9 @@
   align-items: center;
   flex: 2;
 }
-
+.links a {
+  color: black;
+}
 .little-links {
   list-style-type: none;
   display: flex;
@@ -46,4 +50,42 @@
 }
 .expand {
   max-height: 5rem;
+}
+.icon {
+  width: 20px;
+  cursor: pointer;
+}
+.icon2 {
+  width: 30px;
+  color: black;
+  cursor: pointer;
+}
+.account-stuff {
+  position: absolute;
+  width: 150px;
+  height: 100px;
+  display: flex;
+  border: 1px solid rgb(255, 255, 255);
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border-radius: 10px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+  transform: translateX(-100%);
+}
+.account-stuff a {
+  width: 90%;
+  text-align: center;
+  transition: all 0.3s ease-in-out;
+  border-radius: 5px;
+}
+.account-stuff a:hover {
+  background-color: black;
+  color: white;
+}
+.open-account-stuff {
+  opacity: 1;
+  pointer-events: all;
 }

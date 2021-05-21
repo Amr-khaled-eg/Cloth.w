@@ -1,0 +1,22 @@
+.input-div {
+  display: flex;
+  flex-direction: column;
+}
+.input {
+  background-color: transparent;
+  padding: 0.5rem 0;
+  font-size: 1rem;
+  outline: none;
+  border: none;
+  border-bottom: 2px solid black;
+}
+
+.input-label {
+  transform: translateY(30px);
+  pointer-events: none;
+  transition: transform 0.3s ease-in-out;
+  margin-top: 1rem;
+}
+.label-up {
+  transform: translateY(0px);
+}

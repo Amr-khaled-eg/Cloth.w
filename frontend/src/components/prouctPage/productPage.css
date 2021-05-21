@@ -37,6 +37,7 @@
   width: 123.33px;
   cursor: pointer;
   object-fit: cover;
+  object-position: center;
   transition: opacity 2s cubic-bezier(0.075, 0.82, 0.165, 1);
 }
 .img-btn:nth-child(1) {

@@ -9,13 +9,14 @@ function Products() {
     let data = await res.json();
     setProducts(data);
   }, []);
-  console.log(products);
   return (
     <div className="products">
       <h2 className="products-heading">Products</h2>
-      {products.map((product, i) => {
-        return <Product {...product} key={i} />;
-      })}
+      <div className="grid">
+        {products.map((product, i) => {
+          return <Product {...product} key={i} />;
+        })}
+      </div>
     </div>
   );
 }

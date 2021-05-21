@@ -1,60 +1,53 @@
-.product{
-    width:317px;
-    height: 476px;
-    position: relative;
-    cursor: pointer;
-    margin:0 4rem 2rem 0;
+.product {
+  width: 317px;
+  height: 476px;
+  position: relative;
+  cursor: pointer;
+  margin: 0 4rem 2rem 0;
+  border-radius: 1rem;
+  overflow: hidden;
+}
 
+.product-img {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: clip-path 1s ease-in-out;
+}
+.img1 {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+}
+.img2 {
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+}
 
+.product-name {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: white;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.4s ease-in-out;
 }
-.product-overlay{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: #c6ab924b;
-    opacity: 0;
-    transition: .4s ease-in-out;
+.product-price {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  color: white;
+  font-size: 2rem;
 }
-.product-img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
+.product:hover .product-name {
+  opacity: 1;
+  pointer-events: all;
 }
-.product-button{
-    position: absolute;
-    bottom: -5px;
-    width:90%;
-    left:5%;
-   opacity: 0;
-   pointer-events: none;
-   transition: .4s ease-in-out;
+.product:hover .img1 {
+  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
 }
-.product-name{
-    position: absolute;
-    top:50%;
-    left:50%;
-    transform: translate(-50%,-50%);
-    color: white;
-    opacity: 0;
-    pointer-events: none;
-    transition: .4s ease-in-out;
-}
-.product-price{
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    color: white;
-    font-size: 2rem;
-}
-.product:hover .product-button{
-    opacity: 1;
-    pointer-events: all;
-    bottom: 5px;
-}
-.product:hover .product-overlay{
-    opacity: 1;
-}
-.product:hover .product-name{
-    opacity: 1;
-    pointer-events: all;
+.product:hover .img2 {
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }

@@ -1,14 +1,24 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 import "./productPage.css";
 function ProductPage() {
-  let product = {
-    name: "dress",
-    description: "H&M dress with blend",
-    price: 20,
-    imgs: ["/photo3.jpg", "/photo3.jpg", "/photo3.jpg"],
-    color: "black",
-    size: ["S", "M", "L"],
-  };
+  const [product, setProduct] = React.useState({
+    name: "",
+    discription: "",
+    price: null,
+    category: "",
+    stock: null,
+    sizes: [],
+    color: "",
+    images: [],
+  });
+  let params = useParams();
+  React.useEffect(async () => {
+    const res = await fetch(`http://localhost:8080/products/${params.name}`);
+    const data = await res.json();
+    setProduct(data);
+  }, []);
+
   function ChangeImg(n) {
     let images = document.querySelectorAll(".img-preview");
     let imagesBtns = document.querySelectorAll(".img-btn");
@@ -23,11 +33,12 @@ function ProductPage() {
       }
     });
   }
+  console.log(product);
 
   return (
     <div className="product-page">
       <div className="product-img-preview">
-        {product.imgs.map((img, i) => {
+        {product.images.map((img, i) => {
           return (
             <img
               key={i}
@@ -39,7 +50,7 @@ function ProductPage() {
         })}
       </div>
       <div className="product-imgs">
-        {product.imgs.map((img, i) => {
+        {product.images.map((img, i) => {
           return (
             <img
               key={i}
@@ -57,12 +68,12 @@ function ProductPage() {
         <h3>$ {product.price}</h3>
         <div className="description">
           <h3>{product.name}</h3>
-          <p>{product.description}</p>
+          <p>{product.discription}</p>
         </div>
         <p>Color:{product.color}</p>
         <div>
           <p>Size:</p>
-          {product.size.map((s, i) => {
+          {product.sizes.map((s, i) => {
             return (
               <span className="size" key={i}>
                 {s}

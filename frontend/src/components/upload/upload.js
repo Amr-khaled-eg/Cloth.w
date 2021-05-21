@@ -4,15 +4,31 @@ function Upload() {
   function handleDragOver(event) {
     event.preventDefault();
     document.querySelector(".upload-image").classList.add("active");
+    const h1 = document.querySelector(".upload-image h1");
+    h1.innerHTML = "";
+    h1.append("Drop the images");
   }
   function handleDragLeave() {
     document.querySelector(".upload-image").classList.remove("active");
+    const h1 = document.querySelector(".upload-image h1");
+    h1.innerHTML = "";
+    h1.append("Drag And Drop an image");
   }
   function handleDrop(event) {
     event.preventDefault();
-    document.querySelector("#image").files = event.dataTransfer.files;
+    document.querySelector("#image").files = null;
+    const h1 = document.querySelector(".upload-image h1");
+
+    const files = event.dataTransfer.files;
+    if (files.length !== 3) {
+      h1.innerHTML = "";
+      h1.append("You Shoule enter 3 images but you enterd " + files.length);
+    } else {
+      h1.innerHTML = "";
+      h1.append("3 images are Choosen");
+      document.querySelector("#image").files = files;
+    }
     document.querySelector(".upload-image").classList.remove("active");
-    console.log(document.querySelector("#image").files);
   }
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -23,6 +39,12 @@ function Upload() {
     formdata.append("price", form.price.value);
     formdata.append("category", form.category.value);
     formdata.append("stock", form.stock.value);
+    formdata.append("color", form.color.value);
+    document.querySelectorAll("input[type=checkbox]").forEach((input) => {
+      if (input.checked) {
+        formdata.append("sizes", input.name);
+      }
+    });
     let imgs = Array.from(form.images.files);
     for (let i = 0; i < imgs.length; i++) {
       formdata.append("images", imgs[i]);

@@ -1,59 +1,59 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import search from "./icons/search.svg";
+import cart from "./icons/cart.svg";
+import account from "./icons/account.svg";
 import "./NAV.css";
-function NAV({ links }) {
-  function mouseEnter(e) {
-    document.querySelector(".more").classList.add("expand");
-  }
-  function mouseLeave(e) {
-    document.querySelector(".more").classList.remove("expand");
-  }
+function NAV({ user, signOut }) {
   return (
     <nav className="navbar">
       <Link to="/" className="logo-link">
         <h1 className="logo">Cloth.w</h1>
       </Link>
 
-      {links ? (
-        <ul className="links">
-          {links.map((link) => {
-            return (
-              <li onMouseEnter={mouseEnter}>
-                <Link to={link.path}>{link.text}</Link>
-              </li>
-            );
-          })}
-        </ul>
-      ) : (
-        <ul className="links">
-          <li onMouseEnter={mouseEnter}>
-            <Link to="/products">women</Link>
-          </li>
-          <li onMouseEnter={mouseEnter}>
-            <Link to="/as">women</Link>
-          </li>
-          <li onMouseEnter={mouseEnter}>
-            <Link to="/fasd">women</Link>
-          </li>
-          <li className="links2">
-            <ul className="little-links">
-              <li>
-                <Link to="/products/women">women</Link>
-              </li>
-              <li>
-                <Link to="/products/women">women</Link>
-              </li>
-              <li>
-                <Link to="/products/women">women</Link>
-              </li>
-            </ul>
-          </li>
-        </ul>
-      )}
-
-      <div className="more" onMouseLeave={mouseLeave}>
-        <h1>helloooo</h1>
-      </div>
+      <ul className="links">
+        <li>
+          <Link to="/products">Men</Link>
+        </li>
+        <li>
+          <Link to="/products">Women</Link>
+        </li>
+        <li>
+          <Link to="/products">Kids</Link>
+        </li>
+        <li className="links2">
+          <ul className="little-links">
+            <li>
+              <img className="icon" src={search} alt="search" />
+            </li>
+            <li>
+              <Link to="/cart">
+                <img className="icon2" src={cart} alt="search" />
+              </Link>
+            </li>
+            <li>
+              <img
+                className="icon2"
+                src={account}
+                alt="search"
+                onClick={() => {
+                  document
+                    .querySelector(".account-stuff")
+                    .classList.toggle("open-account-stuff");
+                }}
+              />
+              <div className="account-stuff">
+                {user.isSingedIn ? (
+                  <a onClick={signOut}>Sign Out</a>
+                ) : (
+                  <Link to="/signIn">Sign in</Link>
+                )}
+                <Link to="/account">Account</Link>
+              </div>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </nav>
   );
 }

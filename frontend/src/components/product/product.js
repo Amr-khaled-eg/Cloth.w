@@ -1,19 +1,24 @@
 import React from "react";
 import "./product.css";
 import { Link } from "react-router-dom";
-function Product({ name, price, img }) {
+
+function Product(props) {
   return (
-    <Link to={`/products/${name}`}>
+    <Link to={`/products/${props.name}`}>
       <div className="product">
-        <div className="product-overlay"></div>
         <img
-          className="product-img"
-          src={"http://localhost:8080" + img}
-          alt={name}
-        ></img>
-        <p className="product-price">{price + "$"}</p>
-        <h3 className="product-name">{name}</h3>
-        <button className="product-button">Add To Cart</button>
+          className="product-img img2"
+          src={"http://localhost:8080" + props.images[1]}
+          alt={props.name}
+        />
+        <img
+          className="product-img img1"
+          src={"http://localhost:8080" + props.images[0]}
+          alt={props.name}
+        />
+
+        <p className="product-price">{props.price + "$"}</p>
+        <h3 className="product-name">{props.name}</h3>
       </div>
     </Link>
   );
