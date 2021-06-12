@@ -1,5 +1,4 @@
 .upload-container {
-  padding-top: 5rem;
   display: flex;
   flex-direction: column;
 }
@@ -10,29 +9,32 @@
   align-items: center;
 }
 .upload-image {
-  height: 30rem;
+  height: 25rem;
   width: 100%;
-  background-color: #4d4d4d17;
+  background-color: #000000;
   border-radius: 20px;
   transition: transform 0.3s ease-in-out;
+}
+.drag-header {
+  color: white;
 }
 .active {
   transform: scale(1.1);
 }
 .browse-style {
-  background-color: black;
-  color: white;
+  background-color: white;
+  color: black;
   font-size: 2rem;
   padding: 0.5rem 5rem;
   margin-top: 1rem;
   cursor: pointer;
+  border-radius: 0.1rem;
 }
 #image {
   display: none;
 }
 .upload-info {
   display: flex;
-
   padding: 2rem 0;
 }
 .upload-info div {
@@ -47,12 +49,7 @@ label {
   flex: 1;
 }
 .normal-input {
-  background-color: #4d4d4d17;
-  padding: 0.5rem;
   width: 40%;
-  border: none;
-  outline: none;
-  margin-bottom: 1rem;
 }
 .sec {
   flex: 1;
@@ -61,10 +58,14 @@ label {
   display: block;
   width: 70%;
   height: 70%;
+  background-color: black;
+  color: white;
+  border-radius: 1rem;
   margin: 0.3rem 0;
   padding: 1rem;
-  font-size: 1.2rem;
+  font-size: 0.7rem;
   max-width: 30rem;
+  outline: none;
 }
 .third {
   flex: 1;

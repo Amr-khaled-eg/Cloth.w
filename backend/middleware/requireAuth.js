@@ -6,7 +6,7 @@ const requireAuth = (req, res, next) => {
     return res.status(401).json({ success: false, content: "Unauthorized" });
   }
   try {
-    jwt.verify(authorization, JWT_KEY);
+    res.locals.payload = jwt.verify(authorization, JWT_KEY);
     next();
   } catch (err) {
     return res.status(401).json({ success: false, content: "Unauthorized" });

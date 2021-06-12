@@ -1,53 +1,37 @@
-.product {
-  width: 317px;
-  height: 476px;
-  position: relative;
-  cursor: pointer;
-  margin: 0 4rem 2rem 0;
-  border-radius: 1rem;
+.product-imgs-container {
+  width: 203px;
+  height: 304.5px;
+  border-radius: 0.5rem;
   overflow: hidden;
+  margin-bottom: 1rem;
+  position: relative;
 }
-
 .product-img {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
   position: absolute;
   top: 0;
   left: 0;
-  transition: clip-path 1s ease-in-out;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: opacity 0.8s ease-in-out;
 }
-.img1 {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-}
-.img2 {
-  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-}
-
 .product-name {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  color: white;
-  opacity: 0;
-  pointer-events: none;
-  transition: 0.4s ease-in-out;
+  font-size: 1.5rem;
 }
 .product-price {
-  position: absolute;
-  top: 5px;
-  left: 5px;
-  color: white;
-  font-size: 2rem;
+  font-size: 1rem;
 }
-.product:hover .product-name {
+.product-discription {
+  color: #676767;
+  font-size: 1rem;
+  margin: 0.5rem 0;
+}
+.product-img:nth-child(1) {
+  opacity: 0;
+}
+.product:hover .product-img1 {
+  opacity: 0;
+}
+.product:hover .product-img2 {
   opacity: 1;
-  pointer-events: all;
-}
-.product:hover .img1 {
-  clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-}
-.product:hover .img2 {
-  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
 }

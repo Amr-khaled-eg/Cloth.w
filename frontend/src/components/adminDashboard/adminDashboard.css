@@ -1,0 +1,14 @@
+.sign-up-container {
+  padding-top: 4rem;
+}
+.sign-up-btns {
+  width: 20%;
+  height: 80vh;
+  padding: 0 5rem 0 4rem;
+  border-right: 2px solid black;
+}
+.comps {
+  width: 78%;
+  height: 80vh;
+  position: relative;
+}

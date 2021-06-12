@@ -1,5 +1,6 @@
 import React from "react";
 import "./upload.css";
+import Input from "../input/input";
 function Upload() {
   function handleDragOver(event) {
     event.preventDefault();
@@ -72,7 +73,7 @@ function Upload() {
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
-        <h1>Drag And Drop an image</h1>
+        <h1 className="drag-header">Drag And Drop an image</h1>
         <label htmlFor="image" className="browse-style">
           or upload
         </label>
@@ -80,14 +81,30 @@ function Upload() {
       </div>
       <div className="upload-info">
         <div className="first">
-          <label>Product Title</label>
-          <input type="text" name="title" className="normal-input" />
-          <label>Product Color</label>
-          <input type="text" name="color" className="normal-input" />
-          <label>Stock</label>
-          <input type="number" name="stock" className="normal-input" />
-          <label>Price</label>
-          <input type="number" name="price" className="normal-input" />
+          <Input
+            type="text"
+            name="title"
+            className="normal-input"
+            label="Product Title"
+          />
+          <Input
+            type="text"
+            name="color"
+            className="normal-input"
+            label="Product Color"
+          />
+          <Input
+            type="number"
+            name="stock"
+            className="normal-input"
+            label="Stock"
+          />
+          <Input
+            type="number"
+            name="price"
+            className="normal-input"
+            label="Price"
+          />
         </div>
         <div className="sec">
           <label>discription</label>

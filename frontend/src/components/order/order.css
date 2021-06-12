@@ -1,0 +1,44 @@
+.order-container {
+  width: 331px;
+  height: 217px;
+  background-color: white;
+  border-radius: 1.5rem;
+  padding: 1rem;
+  margin: 0 2rem 2rem 0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  position: relative;
+  transition: transform 0.3s ease-in-out;
+  cursor: pointer;
+}
+.order-container:hover {
+  transform: scale(1.03);
+}
+.order-text {
+  margin-bottom: 1.5rem;
+}
+.order-img {
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  width: 176px;
+}
+.confirm-btn {
+  margin: 0;
+  padding: 0.5rem 1.5rem;
+}
+.remove {
+  position: absolute;
+  right: -1rem;
+  top: -0.5rem;
+  color: white;
+  background-color: rgb(0, 0, 0);
+  width: 2rem;
+  height: 2rem;
+  text-align: center;
+  line-height: 1.9rem;
+  font-weight: 700;
+  border-radius: 2rem;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+}

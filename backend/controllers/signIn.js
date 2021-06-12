@@ -17,9 +17,11 @@ const checkUser = async (user) => {
 const createSession = (id) => {
   return jwt.sign({ id }, JWT_KEY, { expiresIn: "1 days" });
 };
-const getIdFromToken = (token) => {
+const checkUserToken = (token) => {
   try {
-    return { success: true, content: { id: jwt.verify(token, JWT_KEY).id } };
+    // return { success: true, content: { id: jwt.verify(token, JWT_KEY).id } };
+    jwt.verify(token, JWT_KEY);
+    return { success: true, content: "this user exists" };
   } catch (err) {
     return { success: false, content: err.message };
   }
@@ -27,7 +29,7 @@ const getIdFromToken = (token) => {
 const signUserIn = (req, res) => {
   const { authorization } = req.headers;
   if (authorization) {
-    res.status(200).json(getIdFromToken(authorization));
+    res.status(200).json(checkUserToken(authorization));
   } else {
     // i will check if the user exists
     checkUser({ email: req.body.email, password: req.body.password })
@@ -35,7 +37,7 @@ const signUserIn = (req, res) => {
         // and if it does i will create a new session and send it to the user
         res.status(200).json({
           success: true,
-          content: { token: createSession(user._id), id: user._id },
+          content: { token: createSession(user._id) },
         });
       })
       .catch((err) => {

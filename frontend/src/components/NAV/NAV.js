@@ -43,7 +43,7 @@ function NAV({ user, signOut }) {
                 }}
               />
               <div className="account-stuff">
-                {user.isSingedIn ? (
+                {user.isSignedIn ? (
                   <a onClick={signOut}>Sign Out</a>
                 ) : (
                   <Link to="/signIn">Sign in</Link>

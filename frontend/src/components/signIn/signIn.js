@@ -33,7 +33,7 @@ function SignIn({ loadUser }) {
         .then((data) => {
           if (data.success) {
             window.sessionStorage.setItem("token", data.content.token);
-            fetch(`http://localhost:8080/profile/${data.content.id}`, {
+            fetch("http://localhost:8080/profile", {
               method: "get",
               headers: {
                 "content-type": "application/json",
@@ -44,7 +44,11 @@ function SignIn({ loadUser }) {
               .then((userData) => {
                 if (userData.success) {
                   loadUser(userData.content);
-                  history.push("/products");
+                  if (userData.content.role === "user") {
+                    history.push("/products");
+                  } else {
+                    history.push("/admin");
+                  }
                 } else {
                   console.log(userData.content);
                 }

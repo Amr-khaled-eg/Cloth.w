@@ -5,6 +5,9 @@ const applayRoutesOnCollections = require("./routes/collections");
 const applayRoutesOnSignUp = require("./routes/signUp");
 const applayRoutesOnSignIn = require("./routes/signIn");
 const applayRoutesOnProfile = require("./routes/profile");
+const applayRoutesOnCart = require("./routes/cart");
+const applayRoutesOnOrders = require("./routes/orders");
+const applayRoutesOnAdmin = require("./routes/admin");
 const app = express();
 const cors = require("cors");
 const helmet = require("helmet");
@@ -23,6 +26,10 @@ applayRoutesOnCollections(app);
 applayRoutesOnSignUp(app);
 applayRoutesOnSignIn(app);
 applayRoutesOnProfile(app);
+applayRoutesOnCart(app);
+applayRoutesOnOrders(app);
+applayRoutesOnAdmin(app);
+
 app.listen(port, () => {
   console.log("[+] Server is up and running");
 });

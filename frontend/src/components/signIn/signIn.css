@@ -5,19 +5,20 @@
 }
 .sign {
   width: 80%;
-  height: 80vh;
+  height: 100vh;
 
   border-radius: 2rem;
 }
 .input-container {
   flex-direction: column;
-  width: 30%;
+  width: 35%;
   padding-right: 4rem;
   border-right: 2px solid black;
 }
 
 .sign-img {
   margin-left: 20rem;
+  height: 80%;
 }
 .sign-up-link {
   margin-top: 4rem;

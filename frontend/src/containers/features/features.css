@@ -21,11 +21,12 @@
 }
 .content {
   padding-top: 6rem;
+  max-width: 70%;
 }
 .img-zoom {
   overflow: hidden;
-  width: 440px;
-  height: 600px;
+  width: 350px;
+  height: 550px;
   border-radius: 5rem;
 }
 
@@ -42,6 +43,10 @@
   margin-bottom: 1rem;
   color: white;
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+}
+.feature-header2 {
+  margin-bottom: 1rem;
+  color: white;
 }
 .shop-now-btn {
   background-color: white;

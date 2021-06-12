@@ -3,7 +3,7 @@
 }
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, 20rem);
+  grid-template-columns: repeat(auto-fill, 15rem);
   grid-gap: 2rem 5rem;
 }
 .products-heading {

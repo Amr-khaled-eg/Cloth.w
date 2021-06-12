@@ -1,6 +1,8 @@
 import React from "react";
 import Input from "../input/input";
 import { useHistory } from "react-router-dom";
+import SliderBtn from "../slider/sliderBtn";
+import SliderContainer from "../slider/sliderContainer";
 import "./signUp.css";
 
 const SignUp = ({ loadUser }) => {
@@ -43,7 +45,7 @@ const SignUp = ({ loadUser }) => {
       .then((data) => {
         if (data.success) {
           window.sessionStorage.setItem("token", data.content.token);
-          fetch(`http://localhost:8080/profile/${data.content.id}`, {
+          fetch("http://localhost:8080/profile", {
             method: "get",
             headers: {
               "content-type": "application/json",
@@ -51,9 +53,11 @@ const SignUp = ({ loadUser }) => {
             },
           })
             .then((resp) => resp.json())
-            .then((user) => {
-              loadUser(user);
-              history.push("/products");
+            .then((userData) => {
+              if (userData.success) {
+                loadUser(userData.content);
+                history.push("/products");
+              }
             })
             .catch(console.log);
         } else {
@@ -77,37 +81,16 @@ const SignUp = ({ loadUser }) => {
     <div className="sign-up-container flex">
       <div className="sign-up-btns flex-col">
         <h2>Sing Up</h2>
-        <p
-          className="sign-up-btn"
-          onClick={() => {
-            showSlide(1);
-          }}
-        >
-          User Info
-        </p>
-        <p
-          className="sign-up-btn"
-          onClick={() => {
-            showSlide(2);
-          }}
-        >
-          Location
-        </p>
-        <p
-          className="sign-up-btn"
-          onClick={() => {
-            showSlide(3);
-          }}
-        >
-          Phone
-        </p>
+        <SliderBtn>User info</SliderBtn>
+        <SliderBtn>Location</SliderBtn>
+        <SliderBtn>Phone</SliderBtn>
         <div className="warnings"> </div>
         <button className="sign-up" onClick={submit}>
           Sign Up
         </button>
       </div>
       <div className="slide">
-        <div className="sign-up-inputs show">
+        <SliderContainer hide={false}>
           <h2>User Info</h2>
           <Input
             onChange={changeHanler}
@@ -129,8 +112,8 @@ const SignUp = ({ loadUser }) => {
           />
           <button className="sign-up-with">sing in with facebook</button>
           <button className="sign-up-with">sing in with gmail</button>
-        </div>
-        <div className="sign-up-inputs hide">
+        </SliderContainer>
+        <SliderContainer hide={true}>
           <h2>Address</h2>
           <Input
             onChange={changeHanler}
@@ -138,8 +121,8 @@ const SignUp = ({ loadUser }) => {
             name="address"
             type="text"
           />
-        </div>
-        <div className="sign-up-inputs hide">
+        </SliderContainer>
+        <SliderContainer hide={true}>
           <h2>Phone</h2>
           <Input
             onChange={changeHanler}
@@ -147,7 +130,7 @@ const SignUp = ({ loadUser }) => {
             name="phone"
             type="tel"
           />
-        </div>
+        </SliderContainer>
       </div>
     </div>
   );

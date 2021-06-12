@@ -132,7 +132,7 @@ function Features() {
       </div>
       <BrightDiv className="section women">
         <div className="content women-content">
-          <h1 className="feature-header">Women New Collectoin</h1>
+          <h1 className="feature-header2">Women New Collectoin</h1>
           <button className="circle-btn women-btn">Shop Now</button>
         </div>
         <div className="img-zoom">

@@ -7,6 +7,10 @@ import ProductPage from "./components/prouctPage/productPage";
 import Upload from "./components/upload/upload";
 import SingIn from "./components/signIn/signIn";
 import SignUp from "./components/signUp/signUp";
+import Cart from "./components/cart/cart";
+import Checkout from "./containers/checkout/checkout";
+import AdminWraper from "./components/adminWraper/adminWraper";
+import AdminDashboard from "./components/adminDashboard/adminDashboard";
 import {
   BrowserRouter as Router,
   Switch,
@@ -18,7 +22,7 @@ const guestUser = {
   email: "",
   address: "",
   phone: "",
-  isSingedIn: false,
+  isSignedIn: false,
 };
 function App() {
   const [user, setUser] = React.useState(guestUser);
@@ -37,7 +41,7 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         if (data.success) {
-          fetch(`http://localhost:8080/profile/${data.content.id}`, {
+          fetch(`http://localhost:8080/profile`, {
             method: "get",
             headers: {
               "content-type": "application/json",
@@ -67,7 +71,7 @@ function App() {
       email: user.email,
       address: user.address,
       phone: user.phone,
-      isSingedIn: true,
+      isSignedIn: true,
     });
   }
   function signOut() {
@@ -87,16 +91,27 @@ function App() {
             <Products />
           </Route>
           <Route path="/products/:name">
-            <ProductPage />
+            <ProductPage isSignedIn={user.isSignedIn} />
           </Route>
-          <Route path="/upload">
+          {/* <Route path="/upload">
             <Upload />
-          </Route>
+          </Route> */}
           <Route path="/signIn">
             <SingIn loadUser={loadUser} />
           </Route>
           <Route path="/signUp">
             <SignUp loadUser={loadUser} />
+          </Route>
+          <Route path="/cart" exact>
+            <Cart isSignedIn={user.isSignedIn} />
+          </Route>
+          <Route path="/cart/checkout">
+            <Checkout user={user} setUser={setUser} />
+          </Route>
+          <Route path="/admin">
+            <AdminWraper isSignedIn={user.isSignedIn}>
+              <AdminDashboard />
+            </AdminWraper>
           </Route>
         </Switch>
       </Router>

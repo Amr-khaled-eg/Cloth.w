@@ -21,6 +21,7 @@ const addUser = (req, res) => {
           email: req.body.email,
           address: req.body.address,
           phone: req.body.phone,
+          role: "user",
         }).save((err, found) => {
           if (err) {
             console.log(err);
@@ -29,9 +30,7 @@ const addUser = (req, res) => {
             const token = jwt.sign({ id: found._id }, JWT_KEY, {
               expiresIn: "1 days",
             });
-            res
-              .status(200)
-              .json({ success: true, content: { token, id: found._id } });
+            res.status(200).json({ success: true, content: { token } });
           }
         });
       });

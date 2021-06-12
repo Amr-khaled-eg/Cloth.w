@@ -11,7 +11,7 @@ const getNeededData = (data) => {
   return result;
 };
 const getProfile = (req, res) => {
-  const id = req.params.id;
+  const id = res.locals.payload.id;
   Users.findOne({ _id: id }, (err, found) => {
     if (err || !found) {
       console.log(err);
