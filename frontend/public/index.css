@@ -52,22 +52,7 @@ body {
   font-family: elsie;
   src: url("./elsie.regular.ttf");
 }
-button {
-  font-family: elsie, serif;
-  background-color: black;
-  color: white;
-  padding: 1rem 3rem;
-  font-size: 1rem;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  margin-top: 4rem;
-}
-h1 {
-  font-size: 6rem;
-  font-family: elsie, serif;
-  font-weight: 500;
-}
+
 h2 {
   font-size: 5rem;
   font-family: steelfish, sans-serif;
@@ -106,25 +91,3 @@ p {
   }
 } */
 /*custom classes  */
-.flex {
-  display: flex;
-}
-.flex-c {
-  justify-content: center;
-  align-items: center;
-}
-.flex-sa {
-  justify-content: space-around;
-}
-.flex-col {
-  display: flex;
-  flex-direction: column;
-}
-.flex-col-c {
-  justify-content: center;
-  flex-direction: column;
-}
-.flex-col-sa {
-  justify-content: space-around;
-  flex-direction: column;
-}

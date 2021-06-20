@@ -3,6 +3,8 @@ import SliderBtn from "../slider/sliderBtn";
 import SliderContainer from "../slider/sliderContainer";
 import Upload from "../upload/upload";
 import Orders from "../orders/orders";
+import AdminProduct from "../adminProduct/adminProduct";
+import Products from "../../containers/products/products";
 import "./adminDashboard.css";
 const AdminDashboard = () => {
   return (
@@ -16,7 +18,7 @@ const AdminDashboard = () => {
       </div>
       <div className="comps">
         <SliderContainer>
-          <h1>admin1</h1>
+          <Products Component={AdminProduct} />
         </SliderContainer>
         <SliderContainer hide={true}>
           <Orders />

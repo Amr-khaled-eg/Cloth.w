@@ -1,0 +1,36 @@
+.flex {
+  display: flex;
+}
+.flex-c {
+  justify-content: center;
+  align-items: center;
+}
+.flex-sa {
+  justify-content: space-around;
+}
+.flex-sb {
+  justify-content: space-between;
+}
+.flex-col {
+  flex-direction: column;
+}
+.flex-col-c {
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.flex-col-sa {
+  align-items: space-around;
+  flex-direction: column;
+}
+
+.flex-col-sb {
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+@media screen and (max-width: 1100px) {
+  .flex {
+    flex-direction: column;
+  }
+}

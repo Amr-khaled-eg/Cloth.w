@@ -4,9 +4,9 @@ import Features from "./containers/features/features";
 import Footer from "./components/footer/footer";
 import Products from "./containers/products/products";
 import ProductPage from "./components/prouctPage/productPage";
-import Upload from "./components/upload/upload";
-import SingIn from "./components/signIn/signIn";
-import SignUp from "./components/signUp/signUp";
+import Product from "./components/product/product";
+import SingIn from "./features/sign in/SignIn";
+import SignUp from "./features/sign up/SignUp";
 import Cart from "./components/cart/cart";
 import Checkout from "./containers/checkout/checkout";
 import AdminWraper from "./components/adminWraper/adminWraper";
@@ -17,6 +17,7 @@ import {
   Route,
   useHistory,
 } from "react-router-dom";
+import { getProfile } from "./services/authentication";
 const guestUser = {
   name: "",
   email: "",
@@ -24,48 +25,21 @@ const guestUser = {
   phone: "",
   isSignedIn: false,
 };
+const getUser = async (loadUser) => {
+  if (!window.sessionStorage.getItem("token")) {
+    return;
+  }
+  try {
+    const profileRes = await getProfile();
+    loadUser(profileRes.content);
+  } catch (e) {
+    console.error(e);
+  }
+};
 function App() {
   const [user, setUser] = React.useState(guestUser);
-  React.useEffect(() => {
-    const token = window.sessionStorage.getItem("token");
-    if (!token) {
-      return;
-    }
-    fetch("http://localhost:8080/signIn", {
-      method: "post",
-      headers: {
-        "Content-Type": "application/json",
-        authorization: token,
-      },
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          fetch(`http://localhost:8080/profile`, {
-            method: "get",
-            headers: {
-              "content-type": "application/json",
-              authorization: token,
-            },
-          })
-            .then((resp) => resp.json())
-            .then((user) => {
-              if (user.success) {
-                loadUser(user.content);
-                // history.push("/products");
-              } else {
-                console.log(user.content);
-              }
-            })
-            .catch(console.log);
-        } else {
-          // i should log the user out and he will sign in again
-          console.log(data.content);
-        }
-      })
-      .catch(console.log);
-  }, []);
-  function loadUser(user) {
+  React.useEffect(() => getUser(loadUser), []);
+  const loadUser = (user) => {
     setUser({
       name: user.name,
       email: user.email,
@@ -73,7 +47,7 @@ function App() {
       phone: user.phone,
       isSignedIn: true,
     });
-  }
+  };
   function signOut() {
     setUser(guestUser);
     window.sessionStorage.removeItem("token");
@@ -88,7 +62,7 @@ function App() {
             <Footer />
           </Route>
           <Route path="/products" exact>
-            <Products />
+            <Products Component={Product} />
           </Route>
           <Route path="/products/:name">
             <ProductPage isSignedIn={user.isSignedIn} />

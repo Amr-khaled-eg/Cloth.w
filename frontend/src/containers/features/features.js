@@ -4,33 +4,26 @@ import "./features.css";
 import img from "./img.jpg";
 import men from "./men.svg";
 import women from "./women.jpg";
+import Button from "../../components/Button/Button";
+import FlexDiv from "../../components/FlexDiv/FlexDiv";
+import Header from "../../components/Header/Header";
 import gsap, { Power3 } from "gsap";
 // import Feature from "../components/feature/feature";
 function Features() {
   let header = React.useRef(null);
   let image = React.useRef(null);
   let btn = React.useRef(null);
-  // const [state, setState] = React.useState([]);
-  // React.useEffect(() => {
-  //   fetch("http://localhost:8080/collections")
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       setState(data);
-  //     })
-  //     .catch((err) => {
-  //       console.error(err);
-  //     });
-  // }, []);
+
   React.useEffect(() => {
     console.log(btn);
     let tl = gsap.timeline();
-    tl.to(header, {
+    tl.to(header.current, {
       webkitClipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)",
       ease: Power3.easeInOut,
       duration: 2,
     })
       .to(
-        image,
+        image.current,
         {
           webkitClipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)",
 
@@ -41,7 +34,7 @@ function Features() {
         "-=1"
       )
       .to(
-        image,
+        image.current,
         {
           scale: 1,
           duration: 2,
@@ -49,7 +42,7 @@ function Features() {
         },
         "-=1"
       )
-      .from(btn, {
+      .from(btn.current, {
         x: -100,
         opacity: 0,
         duration: 1,
@@ -67,46 +60,30 @@ function Features() {
     };
   }, []);
   return (
-    // <div>
-    //   {state.map((feature, index) => {
-    //     return (
-    //       <Feature
-    //         direction={
-    //           index % 3 === 0
-    //             ? ""
-    //             : index % 3 === 1
-    //             ? "col"
-    //             : index % 3 === 2
-    //             ? "rev"
-    //             : ""
-    //         }
-    //         img={feature.image}
-    //         header={feature.header}
-    //         key={index}
-    //       />
-    //     );
-    //   })}
-    // </div>+
-    <div>
-      <div className="section intro">
+    <>
+      <FlexDiv className="section intro">
         <div className="content">
-          <h1
+          <Header
+            color="white"
+            size="lg"
             className="feature-header"
             ref={(h) => {
-              header = h;
+              header.current = h;
             }}
           >
             All The Cloth You Like In One Place
-          </h1>
-          <button
-            className="shop-now-btn"
+          </Header>
+          <Button
+            size="wide"
+            color="#000"
+            bg="#fff"
+            className="mob-btn"
             ref={(b) => {
-              btn = b;
+              btn.current = b;
             }}
           >
-            {" "}
-            Shop Now
-          </button>
+            Show Now
+          </Button>
         </div>
         <div className="img-zoom">
           <img
@@ -114,32 +91,38 @@ function Features() {
             alt="img"
             className="photo"
             ref={(ref) => {
-              image = ref;
+              image.current = ref;
             }}
           />
         </div>
-      </div>
-      <div className="men section">
+      </FlexDiv>
+      <FlexDiv mode="rsb" className="section">
         <div className="men-content">
-          <h1 className="men-header">Great New Men Collections</h1>
+          <Header size="lg" className="men-header">
+            Great New Men Collections
+          </Header>
           <p className="men-p">
             we have a new formal collection for men that looks amazing on
             anybody and a new winter collection that will fit anyone
           </p>
-          <button className="circle-btn men-btn"> Shop </button>
+          <Button color="white">Shop</Button>
         </div>
         <img src={men} alt="men photos" className="men-photos" />
-      </div>
-      <BrightDiv className="section women">
+      </FlexDiv>
+      <FlexDiv mode="rsa" className="section women">
         <div className="content women-content">
-          <h1 className="feature-header2">Women New Collectoin</h1>
-          <button className="circle-btn women-btn">Shop Now</button>
+          <Header size="lg" color="white" className="feature-header2">
+            Women New Collectoin
+          </Header>
+          <Button size="wide" color="#000" bg="#fff">
+            Show Now
+          </Button>
         </div>
         <div className="img-zoom">
           <img src={women} alt="img" className="photo2  " />
         </div>
-      </BrightDiv>
-    </div>
+      </FlexDiv>
+    </>
   );
 }
 export default Features;

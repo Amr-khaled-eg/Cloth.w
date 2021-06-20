@@ -1,8 +1,6 @@
 import React from "react";
-import Product from "../../components/product/product";
-
 import "./products.css";
-function Products() {
+function Products({ Component }) {
   const [products, setProducts] = React.useState([]);
   React.useEffect(async () => {
     let res = await fetch("http://localhost:8080/products");
@@ -14,7 +12,7 @@ function Products() {
       <h2 className="products-heading">Products</h2>
       <div className="grid">
         {products.map((product, i) => {
-          return <Product {...product} key={i} />;
+          return <Component {...product} key={i} />;
         })}
       </div>
     </div>

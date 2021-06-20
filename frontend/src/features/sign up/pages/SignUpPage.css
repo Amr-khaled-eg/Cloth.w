@@ -1,0 +1,40 @@
+.sign-up-container {
+  padding-top: 4rem;
+}
+.sign-up-btns {
+  width: 20%;
+  height: 70vh;
+  padding: 0 5rem 0 4rem;
+  border-right: 2px solid black;
+}
+.sign-up {
+  justify-self: flex-end;
+}
+.slide {
+  width: 25%;
+  height: 80vh;
+  position: relative;
+}
+.sign-up-inputs {
+  width: 100%;
+  height: 100%;
+  padding: 0rem 0 0 5rem;
+  position: absolute;
+  transition: opacity 0.8s cubic-bezier(0.075, 0.82, 0.165, 1) 0.4s;
+}
+.show {
+  top: 0;
+  left: 0;
+  opacity: 1;
+  pointer-events: all;
+}
+.hide {
+  opacity: 0;
+  pointer-events: none;
+  border-bottom: none;
+}
+
+.warning {
+  color: red;
+  font-size: 1.3rem;
+}

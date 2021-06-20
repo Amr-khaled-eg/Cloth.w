@@ -1,5 +1,15 @@
 const Products = require("../models/products");
 const { imagesPaths } = require("../global");
+const unlink = require("fs").unlink;
+const deleteImages = (imagesNames) => {
+  for (let i = 0; i < imagesNames.length; i++) {
+    unlink(`images/${imagesNames[i]}`, (err) => {
+      if (err) {
+        console.error(err);
+      }
+    });
+  }
+};
 exports.getProducts = (req, res) => {
   console.log("get products");
   Products.find({}, (err, found) => {
@@ -22,7 +32,6 @@ exports.getProduct = (req, res) => {
   });
 };
 exports.uploadProduct = (req, res) => {
-  console.log(req.body);
   new Products({
     name: req.body.name,
     discription: req.body.discription,
@@ -39,6 +48,30 @@ exports.uploadProduct = (req, res) => {
       res.send("server error");
     } else {
       res.send({ status: "ok" });
+    }
+  });
+};
+exports.updateProduct = (req, res) => {
+  console.log(req.body);
+  Products.updateOne(
+    { name: req.params.name },
+    { price: req.body.price, stock: req.body.stock },
+    (err, done) => {
+      if (err) {
+        res.status(500).json({ success: false, content: "server Error" });
+      } else {
+        res.status(200).json({ success: true, content: "Product Updated" });
+      }
+    }
+  );
+};
+exports.removeProduct = (req, res) => {
+  Products.findOneAndDelete({ name: req.params.name }, (err, product) => {
+    if (err) {
+      res.status(500).json({ success: false, content: "server Error" });
+    } else {
+      deleteImages(product.images);
+      res.status(200).json({ success: true, content: "Product Removed" });
     }
   });
 };
