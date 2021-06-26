@@ -20,7 +20,7 @@
   align-items: center;
 }
 .flex-col-sa {
-  align-items: space-around;
+  justify-content: space-around;
   flex-direction: column;
 }
 

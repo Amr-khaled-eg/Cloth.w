@@ -86,7 +86,7 @@ const Order = ({ order }) => {
       <button className="confirm-btn">Confirm</button>
       <img src={OrderImg} alt="order svg" className="order-img" />
       <div
-        className="remove"
+        className="delete"
         onClick={getBack}
         ref={(removeB) => (removeBtn.current = removeB)}
       >

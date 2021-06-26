@@ -26,7 +26,7 @@
   margin: 0;
   padding: 0.5rem 1.5rem;
 }
-.remove {
+.delete {
   position: absolute;
   right: -1rem;
   top: -0.5rem;

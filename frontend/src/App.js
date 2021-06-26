@@ -2,15 +2,13 @@ import React from "react";
 import NAV from "./components/NAV/NAV";
 import Features from "./containers/features/features";
 import Footer from "./components/footer/footer";
-import Products from "./containers/products/products";
-import ProductPage from "./components/prouctPage/productPage";
-import Product from "./components/product/product";
+import Products from "./features/products/Products";
+import ProductPage from "./features/ProductPage/ProductPage";
 import SingIn from "./features/sign in/SignIn";
 import SignUp from "./features/sign up/SignUp";
-import Cart from "./components/cart/cart";
-import Checkout from "./containers/checkout/checkout";
-import AdminWraper from "./components/adminWraper/adminWraper";
-import AdminDashboard from "./components/adminDashboard/adminDashboard";
+import Cart from "./features/cart/Cart";
+import Checkout from "./features/checkout/Checkout";
+import Admin from "./features/admin/Admin";
 import {
   BrowserRouter as Router,
   Switch,
@@ -36,8 +34,9 @@ const getUser = async (loadUser) => {
     console.error(e);
   }
 };
-function App() {
+const App = () => {
   const [user, setUser] = React.useState(guestUser);
+  const history = useHistory();
   React.useEffect(() => getUser(loadUser), []);
   const loadUser = (user) => {
     setUser({
@@ -48,10 +47,10 @@ function App() {
       isSignedIn: true,
     });
   };
-  function signOut() {
+  const signOut = () => {
     setUser(guestUser);
     window.sessionStorage.removeItem("token");
-  }
+  };
   return (
     <div className="app">
       <Router>
@@ -62,7 +61,7 @@ function App() {
             <Footer />
           </Route>
           <Route path="/products" exact>
-            <Products Component={Product} />
+            <Products header="Products" />
           </Route>
           <Route path="/products/:name">
             <ProductPage isSignedIn={user.isSignedIn} />
@@ -83,14 +82,12 @@ function App() {
             <Checkout user={user} setUser={setUser} />
           </Route>
           <Route path="/admin">
-            <AdminWraper isSignedIn={user.isSignedIn}>
-              <AdminDashboard />
-            </AdminWraper>
+            <Admin isSignedIn={user.isSignedIn} />
           </Route>
         </Switch>
       </Router>
     </div>
   );
-}
+};
 
 export default App;

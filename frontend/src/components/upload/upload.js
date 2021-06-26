@@ -1,7 +1,8 @@
 import React from "react";
 import "./upload.css";
 import Input from "../input/input";
-function Upload() {
+import { uploadProduct } from "../../services/products";
+const Upload = () => {
   function handleDragOver(event) {
     event.preventDefault();
     document.querySelector(".upload-image").classList.add("active");
@@ -50,15 +51,12 @@ function Upload() {
     for (let i = 0; i < imgs.length; i++) {
       formdata.append("images", imgs[i]);
     }
-    fetch("http://localhost:8080/products", {
-      method: "POST",
-      body: formdata,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-      })
-      .catch(console.error);
+    try {
+      uploadProduct(formdata);
+      alert("uploaded");
+    } catch (e) {
+      console.error(e);
+    }
   };
   return (
     <form
@@ -141,5 +139,5 @@ function Upload() {
       </button>
     </form>
   );
-}
+};
 export default Upload;

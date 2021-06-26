@@ -26,17 +26,17 @@ const Cart = ({ isSignedIn }) => {
       }
     }
   }, [isSignedIn]);
-  const removeObjFromArr = (cart, itemName) => {
+  const removeObjFromArr = (cart, item) => {
     let newArr = [];
     for (let i = 0; i < cart.length; i++) {
-      if (!(cart[i].name === itemName)) {
+      if (!(cart[i].name === item.name && cart[i].size === item.size)) {
         newArr.push(cart[i]);
       }
     }
     return newArr;
   };
-  const removeFromGuestCart = (itemName) => {
-    let newArr = removeObjFromArr(items, itemName);
+  const removeFromGuestCart = (item) => {
+    let newArr = removeObjFromArr(items, { name: item.name, size: item.size });
     localStorage.setItem("cart", JSON.stringify(newArr));
     setItems(newArr);
   };
@@ -59,11 +59,11 @@ const Cart = ({ isSignedIn }) => {
         }
       });
   };
-  const removeFromCart = (itemName) => {
+  const removeFromCart = (item) => {
     if (isSignedIn) {
-      removeFromUserCart(itemName);
+      removeFromUserCart(item.name);
     } else {
-      removeFromGuestCart(itemName);
+      removeFromGuestCart(item);
     }
   };
   return (
@@ -75,7 +75,7 @@ const Cart = ({ isSignedIn }) => {
             <div
               className="remove"
               onClick={() => {
-                removeFromCart(item.name);
+                removeFromCart(item);
               }}
             >
               &#10005;

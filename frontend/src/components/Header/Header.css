@@ -6,12 +6,11 @@
 .md {
   font-size: 4rem;
   font-family: elsie, serif;
-  font-weight: 700;
+  font-weight: 500;
 }
 .sm {
   font-size: 2rem;
   font-family: elsie, serif;
-  font-weight: 700;
 }
 @media screen and (max-width: 1400px) {
   .lg {

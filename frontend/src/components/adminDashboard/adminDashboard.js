@@ -2,23 +2,24 @@ import React from "react";
 import SliderBtn from "../slider/sliderBtn";
 import SliderContainer from "../slider/sliderContainer";
 import Upload from "../upload/upload";
-import Orders from "../orders/orders";
+import Orders from "../../features/orders/orders";
 import AdminProduct from "../adminProduct/adminProduct";
-import Products from "../../containers/products/products";
+import Products from "../../features/products/Products";
+import Header from "../../components/Header/Header";
+import FlexDiv from "../FlexDiv/FlexDiv";
 import "./adminDashboard.css";
 const AdminDashboard = () => {
   return (
-    <div className="sign-up-container flex">
-      <div className="sign-up-btns flex-col">
-        <h2>Admin</h2>
+    <FlexDiv className="sign-up-container">
+      <FlexDiv mode="c" className="sign-up-btns">
+        <Header>Admin</Header>
         <SliderBtn>Manage Products</SliderBtn>
         <SliderBtn>Orders</SliderBtn>
         <SliderBtn>Upload</SliderBtn>
-        <div className="warnings"> </div>
-      </div>
+      </FlexDiv>
       <div className="comps">
         <SliderContainer>
-          <Products Component={AdminProduct} />
+          <Products ListItem={AdminProduct} />
         </SliderContainer>
         <SliderContainer hide={true}>
           <Orders />
@@ -27,7 +28,7 @@ const AdminDashboard = () => {
           <Upload></Upload>
         </SliderContainer>
       </div>
-    </div>
+    </FlexDiv>
   );
 };
 export default AdminDashboard;

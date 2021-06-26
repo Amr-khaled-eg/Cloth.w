@@ -2,7 +2,7 @@ import React from "react";
 import "./adminProduct.css";
 import Input from "../input/input";
 
-function AdminProduct(props) {
+const AdminProduct = (props) => {
   const [updateInfo, setUpdateInfo] = React.useState({
     price: props.price,
     stock: props.stock,
@@ -84,5 +84,5 @@ function AdminProduct(props) {
       </div>
     </div>
   );
-}
+};
 export default AdminProduct;

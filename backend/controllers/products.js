@@ -15,9 +15,9 @@ exports.getProducts = (req, res) => {
   Products.find({}, (err, found) => {
     if (err) {
       console.error(err);
-      res.send("server error");
+      res.status(500).json({ success: false, content: "server error" });
     } else {
-      res.send(found);
+      res.status(200).json({ success: true, content: found });
     }
   });
 };
@@ -25,9 +25,9 @@ exports.getProduct = (req, res) => {
   Products.find({ name: req.params.name }, (err, found) => {
     if (err) {
       console.error(err);
-      res.send("server error");
+      res.status(500).json({ success: false, content: "server error" });
     } else {
-      res.send(found[0]);
+      res.status(200).json({ success: true, content: found[0] });
     }
   });
 };
@@ -45,9 +45,9 @@ exports.uploadProduct = (req, res) => {
     imagesPaths.splice(0, imagesPaths.length);
     if (err) {
       console.error(err);
-      res.send("server error");
+      res.status(500).json({ success: false, content: "server error" });
     } else {
-      res.send({ status: "ok" });
+      res.status(200).json({ success: true, content: "product uploaded" });
     }
   });
 };

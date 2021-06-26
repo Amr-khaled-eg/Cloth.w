@@ -1,6 +1,7 @@
 import React from "react";
 import Input from "../../components/input/input";
 import "./checkout.css";
+
 const Checkout = ({ user, setUser }) => {
   const [items, setItems] = React.useState([]);
   //   const [guestUserInfo, setGuestUserInfo] = React.useState({
@@ -19,7 +20,11 @@ const Checkout = ({ user, setUser }) => {
     let res = [];
     for (let i = 0; i < arr.length; i++) {
       if (arr[i].name) {
-        res.push({ name: arr[i].name, quantity: arr[i].quantity });
+        res.push({
+          name: arr[i].name,
+          size: arr[i].size,
+          quantity: arr[i].quantity,
+        });
       }
     }
     return res;

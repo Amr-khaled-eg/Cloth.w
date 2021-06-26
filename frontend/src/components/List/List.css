@@ -1,0 +1,17 @@
+.products {
+  padding: 5rem 0 0 4rem;
+}
+.header-center {
+  text-align: center;
+}
+.grid {
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 15rem);
+  grid-gap: 2rem 5rem;
+}
+.products-heading {
+  margin-bottom: 2rem;
+  width: 100%;
+  text-align: center;
+}

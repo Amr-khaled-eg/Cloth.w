@@ -10,7 +10,7 @@ const Header = React.forwardRef(
       <h1
         ref={ref}
         style={{ color }}
-        className={`${size}  ${className ? className : null}`}
+        className={`${size} ${className ? className : ""}`}
         {...props}
       >
         {children}

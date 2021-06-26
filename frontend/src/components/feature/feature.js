@@ -1,7 +1,7 @@
 import React from "react";
 import "./feature.css";
 
-function Feature({ direction, img, header }) {
+const Feature = ({ direction, img, header }) => {
   // const [state, setState] = React.useState({ image: null });
   // the follwoing code is for getting the image from the server
   // React.useEffect(() => {
@@ -36,5 +36,5 @@ function Feature({ direction, img, header }) {
       />
     </div>
   );
-}
+};
 export default Feature;

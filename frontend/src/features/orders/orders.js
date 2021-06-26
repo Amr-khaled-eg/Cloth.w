@@ -1,14 +1,16 @@
 import React from "react";
 import "./orders.css";
-import Order from "../order/order";
+import Order from "../../components/order/order";
+import { getOrders } from "../../services/orders";
 const Orders = () => {
   const [orders, setOrders] = React.useState([]);
   React.useEffect(async () => {
-    const res = await fetch("http://localhost:8080/orders", {
-      headers: { authorization: sessionStorage.getItem("token") },
-    });
-    const ordersData = await res.json();
-    setOrders(ordersData.content.orders);
+    try {
+      const ordersData = await getOrders();
+      setOrders(ordersData);
+    } catch (e) {
+      console.error(e);
+    }
   }, []);
   return (
     <div className="orders-container">
