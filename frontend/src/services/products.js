@@ -37,3 +37,12 @@ export const uploadProduct = async (product) => {
   }
   return res.success;
 };
+export const searchProducts = async (searchKeywords) => {
+  const searchResult = await jsonFetch(
+    `/products/search?keywords=${searchKeywords}`
+  );
+  if (!searchResult.success) {
+    throw new Error(searchResult.content);
+  }
+  return searchResult.content;
+};

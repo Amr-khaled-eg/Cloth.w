@@ -10,68 +10,82 @@ const deleteImages = (imagesNames) => {
     });
   }
 };
-exports.getProducts = (req, res) => {
-  console.log("get products");
-  Products.find({}, (err, found) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ success: false, content: "server error" });
-    } else {
-      res.status(200).json({ success: true, content: found });
-    }
-  });
+exports.getProducts = async (req, res) => {
+  try {
+    // .lean() will give me just a json object not  the big document that mongoose returns
+    const products = await Products.find({}).lean();
+    res.status(200).json({ success: true, content: products });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ success: false, content: "server error" });
+  }
 };
-exports.getProduct = (req, res) => {
-  Products.find({ name: req.params.name }, (err, found) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ success: false, content: "server error" });
-    } else {
-      res.status(200).json({ success: true, content: found[0] });
-    }
-  });
+exports.getProduct = async (req, res) => {
+  try {
+    const product = await Products.findOne({ name: req.params.name }).lean();
+    res.status(200).json({ success: true, content: product });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ success: false, content: "server error" });
+  }
 };
-exports.uploadProduct = (req, res) => {
-  new Products({
-    name: req.body.name,
-    discription: req.body.discription,
-    price: req.body.price,
-    category: req.body.category,
-    color: req.body.color,
-    stock: req.body.stock,
-    sizes: req.body.sizes,
-    images: imagesPaths,
-  }).save((err) => {
+exports.uploadProduct = async (req, res) => {
+  try {
+    const { keywords, ...body } = req.body;
+    await Products.create({
+      ...body,
+      keywords: keywords.split(" "),
+      images: imagesPaths,
+    });
     imagesPaths.splice(0, imagesPaths.length);
-    if (err) {
-      console.error(err);
-      res.status(500).json({ success: false, content: "server error" });
-    } else {
-      res.status(200).json({ success: true, content: "product uploaded" });
-    }
-  });
+    res.status(200).json({ success: true, content: "product uploaded" });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ success: false, content: "server error" });
+  }
 };
-exports.updateProduct = (req, res) => {
-  console.log(req.body);
-  Products.updateOne(
-    { name: req.params.name },
-    { price: req.body.price, stock: req.body.stock },
-    (err, done) => {
-      if (err) {
-        res.status(500).json({ success: false, content: "server Error" });
-      } else {
-        res.status(200).json({ success: true, content: "Product Updated" });
-      }
-    }
-  );
+exports.updateProduct = async (req, res) => {
+  try {
+    await Products.updateOne(
+      { name: req.params.name },
+      { price: req.body.price, stock: req.body.stock }
+    ).lean();
+    res.status(200).json({ success: true, content: "Product Updated" });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ success: false, content: "server error" });
+  }
 };
-exports.removeProduct = (req, res) => {
-  Products.findOneAndDelete({ name: req.params.name }, (err, product) => {
-    if (err) {
-      res.status(500).json({ success: false, content: "server Error" });
-    } else {
-      deleteImages(product.images);
-      res.status(200).json({ success: true, content: "Product Removed" });
-    }
-  });
+exports.removeProduct = async (req, res) => {
+  try {
+    const deletedProduct = await Products.findOneAndDelete({
+      name: req.params.name,
+    }).lean();
+    deleteImages(deletedProduct.images);
+    res.status(200).json({ success: true, content: "Product Removed" });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ success: false, content: "server error" });
+  }
+};
+exports.searchProducts = async (req, res) => {
+  // here i will search if the use typed a name of a product
+  // and if they typed i will send the product back if the did not type
+  // i will search by the keywords
+  try {
+    const filters = req.query;
+    let results = [];
+    const nameResult = await Products.find({
+      name: filters.keywords,
+    }).lean();
+    const keywordsResult = await Products.find({
+      keywords: { $in: filters.keywords.split(" ") },
+    }).lean();
+    results = [...nameResult, keywordsResult];
+    results.length
+      ? res.status(200).json({ success: true, content: keywordsResult })
+      : res.status(404).json({ success: false, content: "not found" });
+  } catch (e) {
+    console.error(e);
+  }
 };

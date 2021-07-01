@@ -9,32 +9,38 @@
   align-items: center;
 }
 .upload-image {
-  height: 25rem;
-  width: 100%;
-  background-color: #000000;
-  border-radius: 20px;
+  margin-top: 1rem;
+  background-color: #ffffff;
+  width: 203px;
+  height: 304.5px;
+  box-shadow: 0px 4px 16px rgba(0, 0, 0, 0.11);
   transition: transform 0.3s ease-in-out;
+  text-align: center;
 }
-.drag-header {
-  color: white;
-}
+
 .active {
-  transform: scale(1.1);
+  transform: scale(1.5);
 }
 .browse-style {
-  background-color: white;
-  color: black;
-  font-size: 2rem;
-  padding: 0.5rem 5rem;
-  margin-top: 1rem;
+  background-color: #000000;
+  color: #ffffff;
+  font-size: 1.5rem;
+  padding: 0.3rem 3rem;
+  margin-top: 2rem;
   cursor: pointer;
-  border-radius: 0.1rem;
+  border-radius: 0.2rem;
 }
-#image {
+.preview-img {
+  width: 203px;
+  height: 304.5px;
+  object-fit: cover;
+}
+#image1,
+#image2,
+#image3 {
   display: none;
 }
 .upload-info {
-  display: flex;
   padding: 2rem 0;
 }
 .upload-info div {
@@ -44,8 +50,6 @@ label {
   font-size: 1.3rem;
 }
 .first {
-  display: flex;
-  flex-direction: column;
   flex: 1;
 }
 .normal-input {

@@ -48,6 +48,10 @@
   flex-direction: column;
   justify-content: space-around;
 }
+.out-of-stock {
+  color: rgb(182, 1, 1);
+  font-size: 2rem;
+}
 .description {
   margin: 2rem 0;
 }

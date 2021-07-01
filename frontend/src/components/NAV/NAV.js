@@ -10,7 +10,6 @@ function NAV({ user, signOut }) {
       <Link to="/" className="logo-link">
         <h1 className="logo">Cloth.w</h1>
       </Link>
-
       <ul className="links">
         <li>
           <Link to="/products">Men</Link>

@@ -1,34 +1,39 @@
 const Orders = require("../models/orders");
 const jwt = require("jsonwebtoken");
-exports.postOrder = (req, res) => {
-  const { authorization } = req.headers;
-  let user = "guest user";
-  if (authorization) {
+const Products = require("../models/products");
+const updateProductsQuantity = async (products) => {
+  for (let i = 0; i < products.length; i++) {
     try {
-      user = jwt.verify(authorization, "NEW_SESSION").id;
-    } catch (err) {
-      res.status(400).json({ success: false, content: "wrong token" });
+      const product = await Products.findOne({ name: products[i].name });
+      product.stock -= products[i].quantity;
+      product.save();
+    } catch (e) {
+      console.error(e);
     }
   }
-  new Orders({
-    user: user,
-    ...req.body,
-  }).save((err) => {
-    if (err) {
-      res
-        .status(500)
-        .json({ success: false, content: "can not save the order" });
-    } else {
-      res.status(200).json({ success: true, content: "order added" });
-    }
-  });
 };
-exports.getAllOrders = (req, res) => {
-  Orders.find({}, (err, found) => {
-    if (err || !found) {
-      res.status(500).json({ success: false, content: "server error" });
-    } else {
-      res.status(200).json({ success: true, content: { orders: found } });
-    }
-  });
+exports.postOrder = async (req, res) => {
+  const { authorization } = req.headers;
+  let user = "guest user";
+  try {
+    if (authorization) user = jwt.verify(authorization, "NEW_SESSION").id;
+    await Orders.create({
+      user: user,
+      date: new Date().toLocaleString(),
+      ...req.body,
+    });
+    updateProductsQuantity(req.body.products);
+    res.status(200).json({ success: true, content: "order added" });
+  } catch (e) {
+    res.status(500).json({ success: false, content: "server error" });
+  }
+};
+exports.getAllOrders = async (req, res) => {
+  try {
+    const orders = await Orders.find({});
+    res.status(200).json({ success: true, content: { orders } });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ success: false, content: "server error" });
+  }
 };

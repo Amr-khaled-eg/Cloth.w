@@ -1,6 +1,8 @@
 import React from "react";
 import Input from "../../../components/input/input";
 import Header from "../../../components/Header/Header";
+import CheckoutItem from "../../../components/checkoutItem/checkoutItem";
+import Button from "../../../components/Button/Button";
 import "./CheckoutPage.css";
 
 const CheckoutPage = ({
@@ -16,27 +18,9 @@ const CheckoutPage = ({
       <Header> Checkout</Header>
       <div className="checkout-container">
         <div className="checkout-products">
-          {items.map((item, i) => {
-            return (
-              <div className="checkout-product" key={i}>
-                <img
-                  className="checkout-product-img"
-                  src={"http://localhost:8080" + item.image}
-                />
-                <div className="checkout-product-info">
-                  <Header size="sm">{item.name}</Header>
-                  <p>
-                    <span className="tab">Size</span>
-                    <span>{item.size}</span>
-                  </p>
-                  <p>
-                    <span className="tab">Qty</span>
-                    <span>{item.quantity}</span>
-                  </p>
-                </div>
-              </div>
-            );
-          })}
+          {items.map((item, i) => (
+            <CheckoutItem item={item} key={i} />
+          ))}
         </div>
         <div className="user-info">
           <Input
@@ -82,7 +66,7 @@ const CheckoutPage = ({
             <span className="tab">=</span>
             <span className="tab">Total: {getTotalPrice(items) + 10}$</span>
           </p>
-          <button onClick={submitOrder}>Confirm</button>
+          <Button onClick={submitOrder}>Confirm</Button>
         </div>
       </div>
     </div>

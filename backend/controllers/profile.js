@@ -10,16 +10,16 @@ const getNeededData = (data) => {
   });
   return result;
 };
-const getProfile = (req, res) => {
+const getProfile = async (req, res) => {
+  // this function will get the id from the requireAuth middleware and search for the user and return the user
   const id = res.locals.payload.id;
-  Users.findOne({ _id: id }, (err, found) => {
-    if (err || !found) {
-      console.log(err);
-      res.status(500).json({ success: false, content: "server error" });
-    } else {
-      let result = getNeededData(found._doc);
-      res.status(200).json({ success: true, content: result });
-    }
-  });
+  try {
+    const profile = await Users.findOne({ _id: id }).lean();
+    if (!profile) throw new Error("profile not found");
+    res.status(200).json({ success: true, content: getNeededData(profile) });
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ success: false, content: "server error" });
+  }
 };
 exports.getProfile = getProfile;

@@ -1,7 +1,7 @@
 import React from "react";
 import "./adminProduct.css";
 import Input from "../input/input";
-
+import Button from "../Button/Button";
 const AdminProduct = (props) => {
   const [updateInfo, setUpdateInfo] = React.useState({
     price: props.price,
@@ -74,9 +74,9 @@ const AdminProduct = (props) => {
             label="Stock"
             onChange={handleChange}
           />
-          <button className="confirm-update" onClick={updateProduct}>
+          <Button size="sm" className="confirm-update" onClick={updateProduct}>
             Confirm
-          </button>
+          </Button>
         </div>
       </div>
       <div className="remove2" onClick={removeProduct}>

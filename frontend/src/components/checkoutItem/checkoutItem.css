@@ -1,0 +1,16 @@
+.checkout-product {
+  height: 10rem;
+  margin-right: 2rem;
+  width: 20rem;
+}
+.checkout-product-img {
+  height: 100%;
+  width: 30%;
+  object-fit: cover;
+}
+.checkout-product-info {
+  margin-left: 1rem;
+}
+.tab {
+  margin-right: 2rem;
+}

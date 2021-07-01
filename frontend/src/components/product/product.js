@@ -3,7 +3,6 @@ import "./product.css";
 import { Link } from "react-router-dom";
 
 function Product(props) {
-  console.log(props);
   return (
     <Link to={`/products/${props.name}`}>
       <div className="product">
@@ -21,7 +20,7 @@ function Product(props) {
         </div>
 
         <h3 className="product-name">{props.name}</h3>
-        <p className="product-discription">{props.discription}</p>
+        <p className="product-discription">{props.description}</p>
         <p className="product-price">{props.price + "$"}</p>
       </div>
     </Link>

@@ -1,12 +1,11 @@
 import React from "react";
-import BrightDiv from "../../components/brightDiv/brightDiv";
 import "./features.css";
 import img from "./img.jpg";
 import men from "./men.svg";
 import women from "./women.jpg";
-import Button from "../../components/Button/Button";
-import FlexDiv from "../../components/FlexDiv/FlexDiv";
-import Header from "../../components/Header/Header";
+import Button from "../Button/Button";
+import FlexDiv from "../FlexDiv/FlexDiv";
+import Header from "../Header/Header";
 import gsap, { Power3 } from "gsap";
 // import Feature from "../components/feature/feature";
 function Features() {

@@ -13,8 +13,12 @@ body {
   font-family: steelfish, sans-serif;
   position: relative;
 }
+
 #root {
   position: relative;
+}
+.app {
+  padding: 0 4rem;
 }
 /* .app {
   overflow: hidden;

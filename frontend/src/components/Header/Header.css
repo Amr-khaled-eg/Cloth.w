@@ -10,6 +10,7 @@
 }
 .sm {
   font-size: 2rem;
+  font-weight: 500;
   font-family: elsie, serif;
 }
 @media screen and (max-width: 1400px) {
@@ -27,6 +28,5 @@
 @media screen and (max-width: 800px) {
   h1 {
     font-size: 2.5rem !important;
-    font-weight: 700;
   }
 }

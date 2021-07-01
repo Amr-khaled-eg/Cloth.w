@@ -61,8 +61,9 @@ const ProductPage = ({ product, onSizeChange, addToCart }) => {
         <Header size="md"> ${product.price}</Header>
         <div className="description">
           <Header size="md">{product.name}</Header>
-          <p>{product.discription}</p>
+          <p>{product.description}</p>
         </div>
+        {product.stock === 0 && <p className="out-of-stock">out of stock</p>}
         <p>Color:{product.color}</p>
         <div>
           <p>Size:</p>

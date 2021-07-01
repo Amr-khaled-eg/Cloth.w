@@ -1,6 +1,6 @@
 import React from "react";
 import NAV from "./components/NAV/NAV";
-import Features from "./containers/features/features";
+import Features from "./components/features/features";
 import Footer from "./components/footer/footer";
 import Products from "./features/products/Products";
 import ProductPage from "./features/ProductPage/ProductPage";
@@ -61,7 +61,7 @@ const App = () => {
             <Footer />
           </Route>
           <Route path="/products" exact>
-            <Products header="Products" />
+            <Products />
           </Route>
           <Route path="/products/:name">
             <ProductPage isSignedIn={user.isSignedIn} />

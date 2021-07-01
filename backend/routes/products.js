@@ -3,6 +3,7 @@ const upload = require("../middleware/multer");
 const requireAuth = require("../middleware/requireAuth");
 const requireAdmin = require("../middleware/requireAdmin");
 module.exports = (app) => {
+  app.get("/products/search", controller.searchProducts);
   app
     .route("/products")
     .get(controller.getProducts)

@@ -18,7 +18,7 @@ const getProducts = (arr) => {
 const getTotalPrice = (items) => {
   let total = 0;
   for (let i = 0; i < items.length; i++) {
-    total += items[i].price;
+    total += items[i].price * items[i].quantity;
   }
   return total;
 };
@@ -54,7 +54,6 @@ const Checkout = ({ user, setUser }) => {
           phone: user.phone,
           email: user.email,
         },
-        date: new Date().toLocaleString(),
       };
       try {
         await uploadOrder(order);

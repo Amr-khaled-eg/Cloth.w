@@ -26,24 +26,26 @@ const checkUserToken = (token) => {
     return { success: false, content: err.message };
   }
 };
-const signUserIn = (req, res) => {
+const signUserIn = async (req, res) => {
   const { authorization } = req.headers;
   if (authorization) {
     res.status(200).json(checkUserToken(authorization));
   } else {
-    // i will check if the user exists
-    checkUser({ email: req.body.email, password: req.body.password })
-      .then((user) => {
-        // and if it does i will create a new session and send it to the user
-        res.status(200).json({
-          success: true,
-          content: { token: createSession(user._id) },
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-        res.status(400).json({ success: false, content: err.message });
+    try {
+      // i will check if the user exists
+      const user = await checkUser({
+        email: req.body.email,
+        password: req.body.password,
       });
+      // and if it does i will create a new session and send it to the user
+      res.status(200).json({
+        success: true,
+        content: { token: createSession(user._id) },
+      });
+    } catch (e) {
+      console.log(e);
+      res.status(400).json({ success: false, content: e.message });
+    }
   }
 };
 exports.signUserIn = signUserIn;

@@ -2,7 +2,7 @@ import React from "react";
 const sizes = {
   sm: {
     padding: ".7rem 2.1rem",
-    fontSize: ".7rem",
+    fontSize: ".9rem",
   },
   md: {
     padding: "1rem 3rem",
