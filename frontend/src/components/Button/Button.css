@@ -1,0 +1,39 @@
+.button {
+  font-family: Montserrat, sans-serif;
+  border-radius: 3px;
+  font-weight: 700;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.sm-btn {
+  padding: 0.7rem 2.1rem;
+  font-size: 0.9rem;
+}
+.md-btn {
+  padding: 1rem 3rem;
+  font-size: 1rem;
+}
+.lg-btn {
+  padding: 2rem 6rem;
+  font-size: 1.5rem;
+}
+.wide-btn {
+  padding: 1rem 4rem;
+  font-size: 1rem;
+}
+
+@media screen and (max-width: 1100px) {
+  .md-btn {
+    padding: 0.7rem 2.1rem;
+    font-size: 0.9rem;
+  }
+  .lg-btn {
+    padding: 0.7rem 2.1rem;
+    font-size: 0.9rem;
+  }
+  .wide-btn {
+    padding: 0.7rem 2.1rem;
+    font-size: 0.9rem;
+  }
+}

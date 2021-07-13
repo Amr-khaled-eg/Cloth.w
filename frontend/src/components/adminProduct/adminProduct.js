@@ -45,7 +45,7 @@ const AdminProduct = (props) => {
   };
   return (
     <div className="product">
-      <div className="product-imgs-container">
+      <div className="admin-product-imgs-container">
         <img
           className="admin-product-image"
           src={"http://localhost:8080" + props.images[0]}

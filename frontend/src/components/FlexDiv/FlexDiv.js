@@ -9,15 +9,18 @@ const modes = {
   cc: "flex-col-c",
   csa: "flex-col-sa",
   csb: "flex-col-sb",
+  center: "center",
 };
-const FlexDiv = ({ className, children, mode = "r", ...props }) => {
-  const classN = className
-    ? `flex ${modes[mode]} ${className}`
-    : `flex ${modes[mode]}`;
-  return (
-    <div className={classN} {...props}>
-      {children}
-    </div>
-  );
-};
+const FlexDiv = React.forwardRef(
+  ({ className, children, mode = "r", ...props }, ref) => {
+    const classN = className
+      ? `flex ${mode !== "r" && modes[mode]} ${className}`
+      : `flex ${modes[mode]}`;
+    return (
+      <div ref={ref} className={classN} {...props}>
+        {children}
+      </div>
+    );
+  }
+);
 export default FlexDiv;

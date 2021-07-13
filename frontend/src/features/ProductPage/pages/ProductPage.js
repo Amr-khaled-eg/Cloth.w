@@ -42,7 +42,7 @@ const ProductPage = ({ product, onSizeChange, addToCart }) => {
           );
         })}
       </div>
-      <FlexDiv mode="c" className="product-imgs">
+      <FlexDiv mode="csa" className="product-imgs">
         {product.images.map((img, i) => {
           return (
             <img

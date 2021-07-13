@@ -10,7 +10,7 @@
 
 body {
   background-color: #f9f6f7;
-  font-family: steelfish, sans-serif;
+  font-family: "Montserrat", sans-serif;
   position: relative;
 }
 
@@ -18,7 +18,9 @@ body {
   position: relative;
 }
 .app {
-  padding: 0 4rem;
+  max-width: 1600px;
+  overflow: hidden;
+  margin: auto;
 }
 /* .app {
   overflow: hidden;
@@ -65,7 +67,6 @@ h2 {
 h3 {
   font-size: 3rem;
   font-weight: 500;
-  font-family: steelfish;
 }
 a {
   text-decoration: none;
@@ -86,12 +87,13 @@ p {
     clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
   }
 } */
-/* @media screen and (max-width: 1600px) {
+@media screen and (max-width: 1600px) {
   .app {
-    padding: 0 100px;
+    padding: 0 2rem;
   }
-  h1 {
-    font-size: 3.5rem;
+}
+@media screen and (max-width: 600px) {
+  .app {
+    padding: 0 0.5rem;
   }
-} */
-/*custom classes  */
+}

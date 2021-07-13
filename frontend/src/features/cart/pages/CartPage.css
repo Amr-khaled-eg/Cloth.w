@@ -1,4 +1,9 @@
 .cart {
-  padding: 5rem 0 0 4rem;
   align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+.cart-header {
+  text-align: center;
 }

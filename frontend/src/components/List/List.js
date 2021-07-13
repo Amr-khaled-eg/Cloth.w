@@ -1,16 +1,15 @@
 import React from "react";
 import Header from "../Header/Header";
-import "./List.css";
-function List({ ListItem, data, header }) {
+import { ListContainer } from "./List.styles";
+const List = ({ ListItem, data, header }) => {
   return (
-    <div className="list">
+    <ListContainer>
       {header ? <Header className="list-center">{header}</Header> : null}
-      <div className="grid">
-        {data.map((item, i) => {
+      {data &&
+        data.map((item, i) => {
           return <ListItem {...item} key={i} />;
         })}
-      </div>
-    </div>
+    </ListContainer>
   );
-}
+};
 export default List;

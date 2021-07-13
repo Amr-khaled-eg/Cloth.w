@@ -3,12 +3,13 @@
   padding: 1rem 0;
   flex-wrap: wrap;
   position: relative;
+  margin-bottom: 5rem;
   z-index: 5;
 }
 .logo {
   font-size: 3rem;
   font-weight: 500;
-  font-family: steelfish, sans-serif;
+  font-family: "Montserrat", sans-serif;
   color: black;
 }
 .logo-link {
@@ -23,6 +24,7 @@
 }
 .links a {
   color: black;
+  font-size: 1rem;
 }
 .little-links {
   list-style-type: none;

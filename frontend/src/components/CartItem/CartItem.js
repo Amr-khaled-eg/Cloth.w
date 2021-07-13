@@ -4,8 +4,8 @@ import Button from "../Button/Button";
 import "./CartItem.css";
 const CartItem = ({ item, onItemRemove, updateQuantity }) => {
   return (
-    <FlexDiv className="item">
-      <div
+    <FlexDiv mode="rsb" className="item">
+      {/* <div
         className="remove"
         onClick={() => {
           onItemRemove(item);
@@ -46,6 +46,47 @@ const CartItem = ({ item, onItemRemove, updateQuantity }) => {
             </Button>
           </div>
           <button className="checkout">Checkout</button>
+        </div>
+      </FlexDiv> */}
+      <div className="cart-item-info-pt1">
+        <img
+          src={"http://localhost:8080" + item.image}
+          className="cart-item-img"
+        />
+        <FlexDiv mode="csb" className="cart-item-info-pt1-content">
+          <p className="cart-item-name">{item.name}</p>
+          <p> {item.color}</p>
+          <FlexDiv>
+            <Button
+              className="quantity-btn"
+              onClick={() =>
+                updateQuantity(-1, { name: item.name, size: item.size })
+              }
+            >
+              -
+            </Button>
+            <p className="quantity-num">{item.quantity}</p>
+            <Button
+              className="quantity-btn"
+              onClick={() =>
+                updateQuantity(1, { name: item.name, size: item.size })
+              }
+            >
+              +
+            </Button>
+          </FlexDiv>
+        </FlexDiv>
+      </div>
+      <FlexDiv mode="csb" className="cart-item-info-pt2">
+        <p>{item.price}$</p>
+        <p className="cart-item-size">{item.size}</p>
+        <div
+          className="remove"
+          onClick={() => {
+            onItemRemove(item);
+          }}
+        >
+          &#10005;
         </div>
       </FlexDiv>
     </FlexDiv>
